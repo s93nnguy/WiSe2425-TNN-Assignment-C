@@ -1,4 +1,4 @@
-WiSe2425-TNN-Assignment-B
+WiSe2425-TNN-Assignment-C
 # WiSe2425-TNN-Assignment-B
 
 This project implements and trains various **Multi-Layer Perceptron (MLP)** models to perform **encoder-decoder tasks** with different configurations, including 8-2-8, 8-3-8, 50-2-50, and 64-2-64 architectures. The goal of each model is to compress input data through a bottleneck layer and reconstruct the input at the output layer.
@@ -20,21 +20,12 @@ This project implements and trains various **Multi-Layer Perceptron (MLP)** mode
 ## Project Structure
 ```
 WiSe2425-TNN-Assignment-B/
- ├── data/ │
- ├── encoder_decoder_8-2-8_training_data.txt 
- │ ├── encoder_decoder_8-3-8_training_data.txt
- │ ├── encoder_decoder_50-2-50_training_data.txt
- │ └── encoder_decoder_64-2-64_training_data.txt
+ ├── data/
+ │ ├── 
  ├── logs/
- │ ├── learning_curve_8-2-8.txt
- │ ├── learning_curve_8-3-8.txt
- │ ├── learning_curve_50-2-50.txt
- │ └── learning_curve_64-2-64.txt
+ │ ├── 
  ├── reports/
- │ ├── learning_curve_8-2-8.png
- │ ├── learning_curve_8-3-8.png
- │ ├── learning_curve_50-2-50.png
- │ └── learning_curve_64-2-64.png
+ │ ├── 
  ├── scripts/
  ├── src/
  │ ├── evaluate.py
@@ -52,8 +43,8 @@ To run this project locally, you'll need to have **Python 3.9+** installed.
 
 1. Clone this repository:
 ```
-git clone git@github.com:s93nnguy/WiSe2425-TNN-Assignment-B.git
-cd WiSe2425-TNN-Assignment-B
+git clone git@github.com:s93nnguy/WiSe2425-TNN-Assignment-C.git
+cd WiSe2425-TNN-Assignment-C
 ```
 2. Install the required Python packages using `pip`:
 ```
