@@ -1,33 +1,23 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
-
-from model import MLP
+import numpy as np
 
 
-def train_model(data, input_size, hidden_size, output_size, learning_rate=0.01, epochs=1000):
-    # Load data
-    # inputs, targets = load_data(data_path, input_size, output_size)
-    inputs, targets = torch.tensor(data[:, :-input_size], dtype=torch.float32), torch.tensor(data[:, -output_size:],
-                                                                                             dtype=torch.float32)
-
-    # Initialize model, loss function, and optimizer
-    model = MLP(input_size, hidden_size, output_size)
-    criterion = nn.MSELoss()
-    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
-
-    # Training loop
-    losses = []
+def train_gradient_descent(model, X, y, learning_rate=0.01, epochs=1000):
+    learning_curve = []
     for epoch in range(epochs):
-        optimizer.zero_grad()
-        outputs, hidden_outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-        losses.append(loss.item())
+        predictions = model.forward(X)
+        error = y - predictions
+        mse = np.mean(error ** 2)
+        learning_curve.append(mse)
 
-        # Log progress every 100 epochs
+        rbf_activations = model.compute_rbf_activations(X)
+        model.weights += learning_rate * rbf_activations.T @ error
+
         if epoch % 100 == 0:
-            print(f'Epoch {epoch}/{epochs}, Loss: {loss.item()}')
+            print(f"Epoch {epoch}, MSE: {mse}")
 
-    return model, hidden_outputs, losses
+    np.savetxt("logs/learning_curve.txt", learning_curve)
+
+
+def train_pseudo_inverse(model, X, y):
+    rbf_activations = model.compute_rbf_activations(X)
+    model.weights = np.linalg.pinv(rbf_activations) @ y

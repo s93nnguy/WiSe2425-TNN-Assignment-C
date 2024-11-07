@@ -19,7 +19,7 @@ This project implements and trains various **Multi-Layer Perceptron (MLP)** mode
 
 ## Project Structure
 ```
-WiSe2425-TNN-Assignment-B/
+WiSe2425-TNN-Assignment-C/
  ├── data/
  │ ├── 
  ├── logs/

@@ -1,13 +1,17 @@
-import torch
+import numpy as np
+from utils import load_data
 
 
-def evaluate_model(model, data, input_size, output_size):
-    inputs, targets = torch.tensor(data[:, :-input_size], dtype=torch.float32), torch.tensor(data[:, -output_size:],
-                                                                                             dtype=torch.float32)
-    model.eval()
+def evaluate_model(model, X, y):
+    predictions = model.forward(X)
+    mse = np.mean((y - predictions) ** 2)
+    return mse
 
-    with torch.no_grad():
-        predictions, hidden_outputs = model(inputs)
-    mse = torch.mean((predictions - targets) ** 2).item()
 
-    return predictions, hidden_outputs, mse
+def compare_methods(gradient_mse, pseudo_mse, computation_time_gradient, computation_time_pseudo):
+    with open("reports/performance_report.txt", "w") as f:
+        f.write("Performance Comparison:\n")
+        f.write(f"Gradient Descent MSE: {gradient_mse}\n")
+        f.write(f"Pseudo-Inverse MSE: {pseudo_mse}\n")
+        f.write(f"Gradient Descent Time: {computation_time_gradient} seconds\n")
+        f.write(f"Pseudo-Inverse Time: {computation_time_pseudo} seconds\n")
