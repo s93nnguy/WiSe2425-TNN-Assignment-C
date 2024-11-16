@@ -1,0 +1,5 @@
+Performance Comparison:
+Gradient Descent MSE: 0.06030081853469421
+Pseudo-Inverse MSE: 0.06029728367165677
+Gradient Descent Time: 0.08693099021911621 seconds
+Pseudo-Inverse Time: 0.00011181831359863281 seconds

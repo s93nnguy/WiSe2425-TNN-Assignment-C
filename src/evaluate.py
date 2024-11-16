@@ -9,7 +9,7 @@ def evaluate_model(model, X, y):
 
 
 def compare_methods(gradient_mse, pseudo_mse, computation_time_gradient, computation_time_pseudo):
-    with open("reports/performance_report.txt", "w") as f:
+    with open("../reports/performance_report.txt", "w") as f:
         f.write("Performance Comparison:\n")
         f.write(f"Gradient Descent MSE: {gradient_mse}\n")
         f.write(f"Pseudo-Inverse MSE: {pseudo_mse}\n")

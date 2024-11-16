@@ -1,15 +1,17 @@
 import numpy as np
 
+from src.utils import adjust_centers_and_widths
+
 
 class RBFNetwork:
-    def __init__(self, n_inputs, k_rbf_neurons, m_outputs):
+    def __init__(self, X, n_inputs, k_rbf_neurons, m_outputs, center_adjust='kmean', centers=None, widths=None):
         self.n_inputs = n_inputs
         self.k_rbf_neurons = k_rbf_neurons
         self.m_outputs = m_outputs
+        self.center_adjust = center_adjust
 
         # Initialize centers and widths
-        self.centers = np.random.rand(k_rbf_neurons, n_inputs)
-        self.widths = np.random.rand(k_rbf_neurons)
+        self.centers, self.widths = adjust_centers_and_widths(X, k_rbf_neurons, center_adjust, centers, widths)
 
         # Initialize weights between -0.5 and 0.5
         np.random.seed(0)
