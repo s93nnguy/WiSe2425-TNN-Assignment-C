@@ -21,12 +21,16 @@ This project implements and trains various **Multi-Layer Perceptron (MLP)** mode
 ```
 WiSe2425-TNN-Assignment-C/
  ├── data/
- │ ├── 
+ │   ├── PA-A_training_data_01.txt # Data
+ │   ├── PA-A_training_data_02.txt # Data
+ │   ├── PA-A_training_data_03.txt # Data
+ │   ├── PA-A_training_data_04.txt # Data
+ │   ├── PA-A_training_data_05.txt # Data
+ │   └── PA-A_training_data_06.txt # Data
  ├── logs/
- │ ├── 
+ │ ├── learning_curve.txt 
  ├── reports/
- │ ├── 
- ├── scripts/
+ │ ├── performance_report.txt
  ├── src/
  │ ├── evaluate.py
  │ ├── main.py
@@ -57,16 +61,19 @@ python src/main.py
 ```
 This will:
 - Loading the data
-  - Generate training dataset and store in folder `data/` 
-  - Separate it into 2 parts with rate (default rate = 0.8): train data and test data
+  - Loading data from one file in folder `data/`
+  - Read p, n, m from header of the file
+  - Separate data into 2 parts with rate (default rate = 0.8): train data and test data
 - Training
-  - Train the model using the backpropagation algorithm.
-  - Print the loss at each epoch.
-  - Print the resulting input and output values to console.
-  - Save the learning curve to `logs/` and plot the learning curve and save visualized learning curve to folder `reports/`
+  - if p = k, init model and calculate weight 
+  - Train the RBF model with gradient to update weight and K-Mean to calculate center and width
+  - Print the loss at each iteration.
+  - Save the learning curve to `logs/`
+  - Save running time (train process)
 - Testing
   - Evaluate the test data
-  - Print the Mean Squared Error (MSE) on the test dataset.
-- Print output
-  - Print the resulting input and output values after evaluating to console and save to file `reports/output_<task_name>.txt`
-  - Visualize hidden states to figures saved to `reports/hidden_states_<task_name>.png`
+  - Save the Mean Squared Error (MSE) on the test dataset
+- Moore-Penrose-Pseudo-Inverse
+  - Using Moore-Penrose-Pseudo-Inverse to calculate weight
+  - Save running time and mse when using Moore-Penrose-Pseudo-Inverse.
+- Compare performance (running time and loss) and save to file `logs/learning_curve.txt`

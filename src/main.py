@@ -1,5 +1,8 @@
 import time
 import copy
+
+from caffe2.perfkernels.hp_emblookup_codegen import filename
+
 from model import RBFNetwork
 from train import train_gradient, train_pseudo_inverse, train_equal_pk
 from evaluate import evaluate_model, compare_methods
@@ -60,7 +63,8 @@ def main():
         pseudo_mse, computation_time_pseudo = rbf_pseudo_inverse(model_pseudo, X_train, y_train, X_test, y_test)
 
         # Compare results
-        compare_methods(gradient_mse, pseudo_mse, computation_time_gradient, computation_time_pseudo)
+        file_name = "../reports/performance_report.txt"
+        compare_methods(file_name, pseudo_mse, computation_time_gradient, computation_time_pseudo)
 
 
 if __name__ == "__main__":
